@@ -1,0 +1,31 @@
+{
+  "model": "784-32-10 ReLU MLP",
+  "model_path": "model/mnist_mlp.onnx",
+  "sample_path": "data/mnist_sample.npz",
+  "onnx_input": "mnist_input",
+  "onnx_output": "mnist_logits",
+  "onnx_ops": [
+    "MatMul",
+    "Add",
+    "Relu",
+    "MatMul",
+    "Add"
+  ],
+  "input_space": "raw MNIST pixel values [0, 255]; pixel/255 normalization folded into first affine layer",
+  "test_accuracy": 0.9691,
+  "sample_index_in_test": 0,
+  "sample_true_label": 7,
+  "sample_predicted_label": 7,
+  "sample_logits": [
+    -7.016669273376465,
+    -7.731128215789795,
+    -0.7782548069953918,
+    2.221179723739624,
+    -14.50322151184082,
+    -2.609102487564087,
+    -17.029930114746094,
+    9.88878059387207,
+    -1.318214774131775,
+    -1.302053689956665
+  ]
+}
