@@ -1,13 +1,4 @@
-# Trustworthy AI Assignment 3
-
-## Environment
-
-```bash
-conda activate trustworthy-ai-a3
-python -m pip install -r requirements.txt
-```
-
-## Marabou Setup Note
+# Marabou Setup Issue
 
 I followed the source build instructions in `Marabou/README.md`:
 
