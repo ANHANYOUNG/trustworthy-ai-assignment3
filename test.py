@@ -23,8 +23,6 @@ ROOT = Path(__file__).resolve().parent
 DEFAULT_MODEL_PATH = ROOT / "model" / "iris_mlp.onnx"
 DEFAULT_SAMPLE_PATH = ROOT / "data" / "iris_sample.npz"
 DEFAULT_RESULTS_ROOT = ROOT / "results"
-INPUT_NAME = "iris_input"
-OUTPUT_NAME = "iris_logits"
 
 
 def parse_args() -> argparse.Namespace:
@@ -57,9 +55,14 @@ def load_sample(sample_path: Path) -> dict[str, Any]:
     }
 
 
-def evaluate_onnx(model_path: Path, raw_input: np.ndarray) -> np.ndarray:
+def get_io_names(model_path: Path) -> tuple[str, str]:
     session = ort.InferenceSession(str(model_path), providers=["CPUExecutionProvider"])
-    logits = session.run([OUTPUT_NAME], {INPUT_NAME: raw_input[None, :]})[0]
+    return session.get_inputs()[0].name, session.get_outputs()[0].name
+
+
+def evaluate_onnx(model_path: Path, raw_input: np.ndarray, input_name: str, output_name: str) -> np.ndarray:
+    session = ort.InferenceSession(str(model_path), providers=["CPUExecutionProvider"])
+    logits = session.run([output_name], {input_name: raw_input[None, :]})[0]
     return logits.reshape(-1).astype(np.float64)
 
 
@@ -114,8 +117,10 @@ def solve_target(
     target_label: int,
     violation_margin: float,
     timeout: int,
+    input_name: str,
+    output_name: str,
 ) -> dict[str, Any]:
-    network = Marabou.read_onnx(str(model_path), inputNames=[INPUT_NAME], outputNames=[OUTPUT_NAME])
+    network = Marabou.read_onnx(str(model_path), inputNames=[input_name], outputNames=[output_name])
     bounds = set_linf_input_bounds(network, raw_input, epsilon)
     add_misclassification_constraint(network, predicted_label, target_label, violation_margin)
 
@@ -225,8 +230,9 @@ def main() -> None:
     if not model_path.exists():
         raise FileNotFoundError(f"Missing model file: {model_path}. Run iris_model.py first.")
 
+    input_name, output_name = get_io_names(model_path)
     sample = load_sample(sample_path)
-    logits = evaluate_onnx(model_path, sample["raw_input"])
+    logits = evaluate_onnx(model_path, sample["raw_input"], input_name, output_name)
     predicted_label = int(np.argmax(logits))
     target_labels = [label for label in range(logits.size) if label != predicted_label]
 
@@ -249,6 +255,8 @@ def main() -> None:
             target,
             args.violation_margin,
             args.timeout,
+            input_name,
+            output_name,
         )
         for target in target_labels
     ]

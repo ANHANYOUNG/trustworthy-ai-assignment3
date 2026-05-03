@@ -7,7 +7,7 @@
   "epsilon": 0.1,
   "violation_margin": 1e-06,
   "status": "UNSAT",
-  "runtime_seconds": 0.0023182351142168045,
+  "runtime_seconds": 0.002496580593287945,
   "property": "All inputs within L-infinity epsilon=0.1 ball are classified as label 2 up to margin 1e-06",
   "initial_logits": [
     -73.79617309570312,
@@ -18,7 +18,7 @@
     {
       "target_label": 0,
       "status": "UNSAT",
-      "runtime_seconds": 0.00046984851360321045,
+      "runtime_seconds": 0.0004645520821213722,
       "input_bounds": [
         [
           7.599999809265137,
@@ -41,7 +41,7 @@
     {
       "target_label": 1,
       "status": "UNSAT",
-      "runtime_seconds": 0.00021996628493070602,
+      "runtime_seconds": 0.0002419017255306244,
       "input_bounds": [
         [
           7.599999809265137,
