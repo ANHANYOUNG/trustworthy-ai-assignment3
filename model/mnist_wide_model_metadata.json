@@ -1,0 +1,31 @@
+{
+  "model": "784-128-10 ReLU MLP (wide)",
+  "model_path": "model/mnist_wide_mlp.onnx",
+  "sample_path": "data/mnist_sample.npz",
+  "onnx_input": "mnist_wide_input",
+  "onnx_output": "mnist_wide_logits",
+  "onnx_ops": [
+    "MatMul",
+    "Add",
+    "Relu",
+    "MatMul",
+    "Add"
+  ],
+  "input_space": "raw MNIST pixel values [0, 255]; pixel/255 normalization folded into first affine layer",
+  "test_accuracy": 0.9776,
+  "sample_index_in_test": 0,
+  "sample_true_label": 7,
+  "sample_predicted_label": 7,
+  "sample_logits": [
+    -8.079846382141113,
+    -14.849967002868652,
+    -5.381669521331787,
+    4.07166051864624,
+    -16.05375862121582,
+    -8.3754301071167,
+    -17.329736709594727,
+    12.075357437133789,
+    -4.335961818695068,
+    -1.9367501735687256
+  ]
+}
