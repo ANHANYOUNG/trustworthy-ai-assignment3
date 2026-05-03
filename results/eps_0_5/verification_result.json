@@ -1,0 +1,66 @@
+{
+  "model": "model/iris_mlp.onnx",
+  "sample": "data/iris_sample.npz",
+  "sample_index": 118,
+  "true_label": 2,
+  "predicted_label": 2,
+  "epsilon": 0.5,
+  "violation_margin": 1e-06,
+  "status": "UNSAT",
+  "runtime_seconds": 0.0038860728964209557,
+  "property": "All inputs within L-infinity epsilon=0.5 ball are classified as label 2 up to margin 1e-06",
+  "initial_logits": [
+    -73.79617309570312,
+    -45.9132194519043,
+    118.07085418701172
+  ],
+  "target_results": [
+    {
+      "target_label": 0,
+      "status": "UNSAT",
+      "runtime_seconds": 0.0006281258538365364,
+      "input_bounds": [
+        [
+          7.199999809265137,
+          8.199999809265137
+        ],
+        [
+          2.0999999046325684,
+          3.0999999046325684
+        ],
+        [
+          6.400000095367432,
+          7.400000095367432
+        ],
+        [
+          1.7999999523162842,
+          2.799999952316284
+        ]
+      ]
+    },
+    {
+      "target_label": 1,
+      "status": "UNSAT",
+      "runtime_seconds": 0.0009094327688217163,
+      "input_bounds": [
+        [
+          7.199999809265137,
+          8.199999809265137
+        ],
+        [
+          2.0999999046325684,
+          3.0999999046325684
+        ],
+        [
+          6.400000095367432,
+          7.400000095367432
+        ],
+        [
+          1.7999999523162842,
+          2.799999952316284
+        ]
+      ]
+    }
+  ],
+  "summary_plot": "results/eps_0_5/summary.png"
+}
