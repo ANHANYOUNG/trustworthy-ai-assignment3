@@ -1,0 +1,25 @@
+{
+  "model": "4-8-3 ReLU MLP",
+  "dataset_path": "data/iris_dataset.npz",
+  "sample_path": "data/iris_sample.npz",
+  "model_path": "model/iris_mlp.onnx",
+  "onnx_input": "iris_input",
+  "onnx_output": "iris_logits",
+  "onnx_ops": [
+    "MatMul",
+    "Add",
+    "Relu",
+    "MatMul",
+    "Add"
+  ],
+  "input_space": "raw Iris features in centimeters; StandardScaler folded into first affine layer",
+  "accuracy_on_full_iris": 1.0,
+  "sample_index": 118,
+  "sample_true_label": 2,
+  "sample_predicted_label": 2,
+  "sample_logits": [
+    -73.7961669171886,
+    -45.91319854534267,
+    118.07081996452438
+  ]
+}

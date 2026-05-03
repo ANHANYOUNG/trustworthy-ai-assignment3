@@ -1,0 +1,20 @@
+{
+  "dataset": "sklearn.datasets.load_iris",
+  "dataset_path": "data/iris_dataset.npz",
+  "sample_path": "data/iris_sample.npz",
+  "sample_index": 118,
+  "sample_true_label": 2,
+  "input_space": "raw Iris features in centimeters",
+  "preprocessing": "StandardScaler parameters are saved for model training/export",
+  "class_names": [
+    "setosa",
+    "versicolor",
+    "virginica"
+  ],
+  "feature_names": [
+    "sepal length (cm)",
+    "sepal width (cm)",
+    "petal length (cm)",
+    "petal width (cm)"
+  ]
+}
